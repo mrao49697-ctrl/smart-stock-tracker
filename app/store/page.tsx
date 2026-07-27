@@ -223,11 +223,11 @@ export default function StorePage() {
                                 <div className="flex items-center justify-between border border-orange-500 rounded-lg p-1">
                                   <button onClick={() => removeFromCart(product.id)} className="w-8 h-8 flex items-center justify-center text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-500/10 rounded-md transition-colors"><Minus className="w-4 h-4" /></button>
                                   <span className="font-bold text-sm w-4 text-center text-orange-500">{inCart}</span>
-                                  <button onClick={() => addToCart(product.id)} disabled={inCart >= product.quantity} className="w-8 h-8 flex items-center justify-center text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-500/10 rounded-md transition-colors disabled:opacity-30"><Plus className="w-4 h-4" /></button>
+                                  <button onClick={() => addToCart(product)} disabled={inCart >= product.quantity} className="w-8 h-8 flex items-center justify-center text-orange-500 hover:bg-orange-50 dark:hover:bg-orange-500/10 rounded-md transition-colors disabled:opacity-30"><Plus className="w-4 h-4" /></button>
                                 </div>
                               ) : (
                                 <button 
-                                  onClick={() => addToCart(product.id)}
+                                  onClick={() => addToCart(product)}
                                   className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg text-sm font-bold transition-colors"
                                 >
                                   Add to Cart
