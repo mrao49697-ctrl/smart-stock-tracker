@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { ShoppingCart, UserCircle, Search, Menu } from 'lucide-react'
+import { ShoppingCart, UserCircle, Search } from 'lucide-react'
+import { StoreCategoryNav } from '@/components/StoreCategoryNav'
+import { Suspense } from 'react'
 
 export default function StoreLayout({
   children,
@@ -46,15 +48,9 @@ export default function StoreLayout({
         {/* Secondary Category Nav */}
         <div className="border-t border-border bg-white dark:bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav className="flex items-center gap-6 text-sm font-medium py-2 overflow-x-auto whitespace-nowrap hide-scrollbar">
-              <button className="flex items-center gap-2 hover:text-orange-500 text-orange-500"><Menu className="w-4 h-4"/> Categories</button>
-              <Link href="#" className="hover:text-orange-500 text-foreground/70 transition-colors">Electronics</Link>
-              <Link href="#" className="hover:text-orange-500 text-foreground/70 transition-colors">Wearables</Link>
-              <Link href="#" className="hover:text-orange-500 text-foreground/70 transition-colors">Furniture</Link>
-              <Link href="#" className="hover:text-orange-500 text-foreground/70 transition-colors">Gaming</Link>
-              <Link href="#" className="hover:text-orange-500 text-foreground/70 transition-colors">Displays</Link>
-              <Link href="#" className="hover:text-orange-500 text-orange-500 font-bold transition-colors">Flash Sale</Link>
-            </nav>
+            <Suspense fallback={<div className="py-2 h-9" />}>
+              <StoreCategoryNav />
+            </Suspense>
           </div>
         </div>
       </header>

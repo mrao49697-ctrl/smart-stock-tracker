@@ -1,14 +1,18 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { ShoppingCart, Plus, Minus, CheckCircle, PackageSearch, Zap, ChevronRight, Star } from 'lucide-react'
 import { supabase, Product, StoreSetting } from '@/lib/supabase'
 
-export default function StorePage() {
+function StorePageContent() {
   const [products, setProducts] = useState<Product[]>([])
   const [settings, setSettings] = useState<StoreSetting>({ id: 'default', store_name: 'Store', currency: '$' })
   const [loading, setLoading] = useState(true)
   
+  const searchParams = useSearchParams()
+  const categoryFilter = searchParams.get('category')
+
   const [cart, setCart] = useState<Record<string, number>>({})
   const [isCheckingOut, setIsCheckingOut] = useState(false)
   const [orderSuccess, setOrderSuccess] = useState(false)
@@ -16,7 +20,13 @@ export default function StorePage() {
   useEffect(() => {
     async function loadData() {
       setLoading(true)
-      const { data: pData } = await supabase.from('products').select('*').order('name')
+      
+      let query = supabase.from('products').select('*')
+      if (categoryFilter && categoryFilter !== 'Flash Sale') {
+        query = query.eq('category', categoryFilter)
+      }
+      
+      const { data: pData } = await query.order('name')
       const { data: sData } = await supabase.from('settings').select('*').eq('id', 'default').single()
       
       if (pData) setProducts(pData)
@@ -24,7 +34,7 @@ export default function StorePage() {
       setLoading(false)
     }
     loadData()
-  }, [])
+  }, [categoryFilter])
 
   const addToCart = (product: Product) => {
     setCart(prev => {
@@ -313,5 +323,13 @@ export default function StorePage() {
         
       </div>
     </div>
+  )
+}
+
+export default function StorePage() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex flex-col items-center justify-center min-h-[60vh]"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mb-4"></div><p className="text-foreground/50 font-medium">Loading store...</p></div>}>
+      <StorePageContent />
+    </Suspense>
   )
 }
