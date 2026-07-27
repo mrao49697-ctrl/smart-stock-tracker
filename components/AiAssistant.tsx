@@ -14,7 +14,7 @@ export function AiAssistant() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!input.trim()) return;
-    sendMessage({ content: input, role: 'user' });
+    sendMessage({ parts: [{ type: 'text', text: input }], role: 'user' });
     setInput('');
   };
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -62,7 +62,7 @@ export function AiAssistant() {
                     : 'bg-gray-100 dark:bg-gray-800 text-foreground self-start rounded-bl-none'
                 }`}
               >
-                {m.content}
+                {m.parts?.map((p, i) => p.type === 'text' ? <span key={i}>{p.text}</span> : null)}
               </div>
             ))}
             
