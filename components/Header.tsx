@@ -1,6 +1,5 @@
 "use client"
 import { useTheme } from 'next-themes'
-import { Sun, Moon, Bell } from 'lucide-react'
 import { Sun, Moon, Bell, Menu, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { sidebarLinks } from './Sidebar'
