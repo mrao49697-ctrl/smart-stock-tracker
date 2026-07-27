@@ -13,5 +13,5 @@ export async function POST(req: Request) {
     system: "You are a helpful, professional AI assistant for a stock and inventory tracking application called StockSathi AI. Keep your answers concise and focused on helping users manage their store, inventory, sales, and supplies.",
   });
 
-  return result.toTextStreamResponse();
+  return result.toUIMessageStreamResponse();
 }
