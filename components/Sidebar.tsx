@@ -3,16 +3,16 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { LayoutDashboard, Package, ShoppingCart, Settings, Store } from 'lucide-react'
 
+export const sidebarLinks = [
+  { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Inventory', href: '/inventory', icon: Package },
+  { name: 'Sales', href: '/sales', icon: ShoppingCart },
+  { name: 'Storefront', href: '/store', icon: Store },
+  { name: 'Settings', href: '/settings', icon: Settings },
+]
+
 export function Sidebar() {
   const pathname = usePathname()
-
-  const links = [
-    { name: 'Dashboard', href: '/', icon: LayoutDashboard },
-    { name: 'Inventory', href: '/inventory', icon: Package },
-    { name: 'Sales', href: '/sales', icon: ShoppingCart },
-    { name: 'Storefront', href: '/store', icon: Store },
-    { name: 'Settings', href: '/settings', icon: Settings },
-  ]
 
   return (
     <aside className="w-64 h-screen bg-card border-r border-border hidden md:flex flex-col">
@@ -20,7 +20,7 @@ export function Sidebar() {
         <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400">StockSathi AI</h1>
       </div>
       <nav className="flex-1 p-4 space-y-2">
-        {links.map((link) => {
+        {sidebarLinks.map((link) => {
           const Icon = link.icon
           const isActive = pathname === link.href
           return (

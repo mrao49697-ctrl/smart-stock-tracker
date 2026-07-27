@@ -4,6 +4,8 @@ Welcome to **StockSathi AI**! This is a complete full-stack web application buil
 
 This project was developed as a comprehensive Final Assignment, showcasing modern web development practices, real-time database management, and premium UI/UX design.
 
+🚀 **Live Demo:** [https://smart-stock-tracker-brown.vercel.app/](https://smart-stock-tracker-brown.vercel.app/)
+
 ---
 
 ## ✨ Features
