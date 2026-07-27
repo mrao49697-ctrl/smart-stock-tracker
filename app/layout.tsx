@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { AiAssistant } from '@/components/AiAssistant'
 
 export const metadata: Metadata = {
   title: 'StockSathi AI | Smart Store Tracker',
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
+          <AiAssistant />
         </ThemeProvider>
       </body>
     </html>
